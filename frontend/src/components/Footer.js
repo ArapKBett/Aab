@@ -57,7 +57,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="flex items-center hover:text-cyan-400 transition-colors"
           >
-            <FaWechat className="mr-2" /> WeChat
+            <SiWechat className="mr-2" /> WeChat
           </a>
         </div>
       </div>
