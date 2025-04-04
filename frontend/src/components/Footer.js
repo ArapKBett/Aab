@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaReddit, FaDiscord, FaWechat } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaReddit, FaDiscord } from 'react-icons/fa';
+import { SiWechat } from 'react-icons/si'; // Simple Icons for WeChat
 
 const Footer = () => {
   return (
