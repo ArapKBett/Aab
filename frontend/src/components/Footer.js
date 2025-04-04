@@ -36,7 +36,7 @@ const Footer = () => {
             <FaTwitter className="mr-2" /> X
           </a>
           <a
-            href="https://reddit.com/user/your-reddit-username"
+            href="https://reddit.com/user/Waste_Explanation410"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center hover:text-cyan-400 transition-colors"
