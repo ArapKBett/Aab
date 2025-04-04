@@ -14,7 +14,7 @@ const Home = () => {
         transition={{ duration: 1 }}
         className="text-center z-10"
       >
-        <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 glitch" data-text="Web & Cybersecurity Pro">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 glitch" data-text="Everything Cybersecurity">
           Web & Cybersecurity Pro
         </h1>
         <p className="mt-4 text-xl text-gray-300">Securing the digital world, one line of code at a time.</p>
