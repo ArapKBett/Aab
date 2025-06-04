@@ -24,9 +24,9 @@ const Portfolio = () => {
         <h2 className="text-4xl font-bold text-cyan-400 mb-8 text-center">Skills</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
           {[
-            { title: 'Languages', items: ['HTML', 'JavaScript', , 'Node.js', 'React', 'Tailwind', 'C', 'C++', 'Java', 'Python', 'Kotlin', 'Angular', 'SQL'] },
-            { title: 'Cybersecurity', items: ['Penetration Testing', 'Nmap', 'Burp Suite', 'Kali Linux', 'Cryptography', 'Threat Modeling'] },
-            { title: 'Tools', items: ['Figma', 'Azure', 'Metasploit', 'Wireshark', 'OWASP ZAP', 'Nessus'] },
+            { title: 'Languages', items: ['HTML', 'JavaScript', 'Node.js', 'React', 'Tailwind', 'C', 'C++', 'Java', 'Python', 'Kotlin', 'Angular', 'SQL'] },
+            { title: 'Cybersecurity', items: ['Penetration Testing', 'Incident Response', 'Digital Forensics', 'Malware Analysis', 'Threat Intelligence', 'Vulnerability Assessment', 'Security Operations', 'Red Teaming', 'Blue Teaming', 'Reverse Engineering', 'Cryptography', 'Threat Modeling'] },
+            { title: 'Tools', items: ['Kali Linux', 'Metasploit', 'Burp Suite', 'Nmap', 'Wireshark', 'TCPDump', 'Snort', 'Suricata', 'Splunk', 'ELK Stack', 'Tenable Nessus', 'Qualys', 'OpenVAS', 'OWASP ZAP', 'BloodHound', 'Mimikatz', 'John the Ripper', 'Hydra', 'Maltego', 'Aircrack-ng'] },
           ].map((skill) => (
             <motion.div key={skill.title} whileHover={{ scale: 1.05 }} className="p-6 bg-gray-900 rounded-lg shadow-lg border border-cyan-500">
               <h3 className="text-2xl font-semibold text-purple-400">{skill.title}</h3>
