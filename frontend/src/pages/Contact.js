@@ -13,11 +13,12 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/contact', formData); // Replace with your backend URL after deployment
+      const response = await axios.post('https://arap-backend.onrender.com/api/contact', formData);
       setStatus('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {
-      setStatus('Failed to send message.');
+      console.error('Error sending message:', err.response ? err.response.data : err.message);
+      setStatus(`Failed to send message: ${err.response ? err.response.data.message || err.message : 'Network error'}`);
     }
   };
 
@@ -35,6 +36,7 @@ const Contact = () => {
             onChange={handleChange}
             placeholder="Name"
             className="w-full p-3 bg-gray-800 rounded-lg text-white border border-cyan-500 focus:outline-none focus:border-purple-500"
+            required
           />
           <input
             type="email"
@@ -43,6 +45,7 @@ const Contact = () => {
             onChange={handleChange}
             placeholder="Email"
             className="w-full p-3 bg-gray-800 rounded-lg text-white border border-cyan-500 focus:outline-none focus:border-purple-500"
+            required
           />
           <textarea
             name="message"
@@ -50,12 +53,13 @@ const Contact = () => {
             onChange={handleChange}
             placeholder="Message"
             className="w-full p-3 bg-gray-800 rounded-lg text-white h-32 border border-cyan-500 focus:outline-none focus:border-purple-500"
+            required
           ></textarea>
           <button type="submit" className="px-6 py-3 bg-purple-500 text-gray-900 font-bold rounded-full hover:bg-purple-400 transition-all">
             Send
           </button>
         </form>
-        {status && <p className="mt-4 text-gray-300">{status}</p>}
+        {status && <p className={`mt-4 ${status.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>{status}</p>}
       </motion.div>
     </section>
   );
