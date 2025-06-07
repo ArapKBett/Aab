@@ -1,59 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 const Portfolio = () => {
-  // Static project data
-  const projects = [
-    {
-      name: 'BugRecon',
-      tech: 'Web Application, Cybersecurity',
-      desc: 'A tool for reconnaissance and vulnerability scanning in web applications.',
-      url: 'https://bugrecon.onrender.com'
-    },
-    {
-      name: 'ArapHunter',
-      tech: 'Web Application, Penetration Testing',
-      desc: 'A platform for automated penetration testing and security assessments.',
-      url: 'https://araphunter.onrender.com'
-    },
-    {
-      name: 'CySec',
-      tech: 'Cybersecurity, Web Platform',
-      desc: 'A cybersecurity platform for threat analysis and mitigation.',
-      url: 'https://cysec.onrender.com'
-    },
-    {
-      name: 'ArapCode',
-      tech: 'Web Development, Coding Platform',
-      desc: 'A coding platform for secure development and collaboration.',
-      url: 'https://arapcode.onrender.com'
-    },
-    {
-      name: 'HowCode',
-      tech: 'Web Application, Educational',
-      desc: 'An educational platform teaching secure coding practices.',
-      url: 'https://howcode.onrender.com'
-    },
-    {
-      name: 'CyberVault',
-      tech: 'Web Application, Secure Storage',
-      desc: 'A secure vault for storing sensitive data with advanced encryption.',
-      url: 'https://cybervault-y26q.onrender.com'
-    },
-    {
-      name: 'ChainSecure',
-      tech: 'Blockchain, Cybersecurity',
-      desc: 'A blockchain-based security solution for decentralized applications.',
-      url: 'https://chainsecure.onrender.com'
-    }
-  ];
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/projects') // Replace with your backend URL after deployment
+      .then(res => setProjects(res.data))
+      .catch(err => console.error(err));
+  }, []);
 
   return (
     <section className="py-20 max-w-6xl mx-auto px-4 pt-20">
       <div className="mb-20">
         <h2 className="text-4xl font-bold text-cyan-400 mb-8">About Me</h2>
         <p className="text-lg text-gray-300 leading-relaxed">
-          I’m a Web Developer and Cybersecurity Specialist experienced in crafting secure Websites, Apps, and Software Systems. I’ve led teams and helped reduce vulnerabilities with cutting-edge security audits.
+          I’m a Web Developer and Cybersecurity Specialist experienced in crafting secure Websites, App and Software Systems. I’ve led teams and helped reduce vulnerabilities with cutting-edge security audits.
         </p>
       </div>
 
@@ -104,19 +67,21 @@ const Portfolio = () => {
       <div className="bg-gray-800 py-10">
         <h2 className="text-4xl font-bold text-cyan-400 mb-8 text-center">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-          {projects.map((project, index) => (
-            <motion.div key={index} whileHover={{ scale: 1.05 }} className="p-6 bg-gray-900 rounded-lg shadow-lg border border-purple-500">
+          {projects.map((project) => (
+            <motion.div key={project._id} whileHover={{ scale: 1.05 }} className="p-6 bg-gray-900 rounded-lg shadow-lg border border-purple-500">
               <h3 className="text-2xl font-semibold text-cyan-400">{project.name}</h3>
               <p className="text-gray-400">{project.tech}</p>
               <p className="mt-2 text-gray-300">{project.desc}</p>
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-block text-cyan-400 hover:text-cyan-300"
-              >
-                Visit Project
-              </a>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-cyan-400 hover:text-cyan-300"
+                >
+                  Visit Project
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
