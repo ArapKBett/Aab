@@ -4,11 +4,18 @@ import axios from 'axios';
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
+  const [error, setError] = useState(null); // Added for error handling
 
   useEffect(() => {
-    axios.get('https://arap-backend.onrender.com') // Replace with your backend URL after deployment
-      .then(res => setProjects(res.data))
-      .catch(err => console.error(err));
+    axios.get('https://arap-backend.onrender.com/api/projects')
+      .then(res => {
+        setProjects(res.data);
+        setError(null); // Clear any previous errors
+      })
+      .catch(err => {
+        console.error('Error fetching projects:', err);
+        setError('Failed to load projects. Please try again later.');
+      });
   }, []);
 
   return (
@@ -47,7 +54,7 @@ const Portfolio = () => {
         <div className="space-y-8">
           {[
             { role: 'Lead Consultant, Teaburg International', time: 'March 2022 - Present', tasks: ['Reduced vulnerabilities by 80%', 'Implemented firewalls'] },
-            { role: 'Internal Web Developer, Autoburg International', time: 'June 2020 - Feb 2022', tasks: ['Built secure intranet', 'Optimized performance'] },
+            { role: 'Internal Web Developer, Autoburg International Juvenile', time: 'June 2020 - Feb 2022', tasks: ['Built secure intranet', 'Optimized performance'] },
           ].map((job) => (
             <motion.div key={job.role} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="p-6 bg-gray-800 rounded-lg shadow-lg">
               <h3 className="text-2xl font-semibold text-purple-400">{job.role}</h3>
@@ -66,24 +73,29 @@ const Portfolio = () => {
 
       <div className="bg-gray-800 py-10">
         <h2 className="text-4xl font-bold text-cyan-400 mb-8 text-center">Projects</h2>
+        {error && <p className="text-red-500 text-center">{error}</p>} {/* Display error if fetch fails */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
-          {projects.map((project) => (
-            <motion.div key={project._id} whileHover={{ scale: 1.05 }} className="p-6 bg-gray-900 rounded-lg shadow-lg border border-purple-500">
-              <h3 className="text-2xl font-semibold text-cyan-400">{project.name}</h3>
-              <p className="text-gray-400">{project.tech}</p>
-              <p className="mt-2 text-gray-300">{project.desc}</p>
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-cyan-400 hover:text-cyan-300"
-                >
-                  Visit Project
-                </a>
-              )}
-            </motion.div>
-          ))}
+          {projects.length === 0 && !error ? (
+            <p className="text-gray-300 text-center">Loading projects...</p>
+          ) : (
+            projects.map((project) => (
+              <motion.div key={project._id} whileHover={{ scale: 1.05 }} className="p-6 bg-gray-900 rounded-lg shadow-lg border border-purple-500">
+                <h3 className="text-2xl font-semibold text-cyan-400">{project.name}</h3>
+                <p className="text-gray-400">{project.tech}</p>
+                <p className="mt-2 text-gray-300">{project.desc}</p>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-cyan-400 hover:text-cyan-300"
+                  >
+                    Visit Project
+                  </a>
+                )}
+              </motion.div>
+            ))
+          )}
         </div>
       </div>
     </section>
