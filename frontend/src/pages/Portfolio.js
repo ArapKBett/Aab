@@ -6,7 +6,7 @@ const Portfolio = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/projects') // Replace with your backend URL after deployment
+    axios.get('https://arap-backend.onrender.com') // Replace with your backend URL after deployment
       .then(res => setProjects(res.data))
       .catch(err => console.error(err));
   }, []);
