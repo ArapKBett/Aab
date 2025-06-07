@@ -12,13 +12,14 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus(''); // Clear previous status
     try {
       const response = await axios.post('https://arap-backend.onrender.com/api/contact', formData);
       setStatus('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
     } catch (err) {
       console.error('Error sending message:', err.response ? err.response.data : err.message);
-      setStatus(`Failed to send message: ${err.response ? err.response.data.message || err.message : 'Network error'}`);
+      setStatus(`Failed to send message: ${err.response ? err.response.data.message || 'Server error' : 'Network error. Please check your connection.'}`);
     }
   };
 
@@ -55,11 +56,18 @@ const Contact = () => {
             className="w-full p-3 bg-gray-800 rounded-lg text-white h-32 border border-cyan-500 focus:outline-none focus:border-purple-500"
             required
           ></textarea>
-          <button type="submit" className="px-6 py-3 bg-purple-500 text-gray-900 font-bold rounded-full hover:bg-purple-400 transition-all">
+          <button
+            type="submit"
+            className="px-6 py-3 bg-purple-500 text-gray-900 font-bold rounded-full hover:bg-purple-400 transition-all"
+          >
             Send
           </button>
         </form>
-        {status && <p className={`mt-4 ${status.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>{status}</p>}
+        {status && (
+          <p className={`mt-4 ${status.includes('successfully') ? 'text-green-500' : 'text-red-500'}`}>
+            {status}
+          </p>
+        )}
       </motion.div>
     </section>
   );
