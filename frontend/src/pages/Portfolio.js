@@ -53,7 +53,7 @@ const Portfolio = () => {
         <h2 className="text-4xl font-bold text-cyan-400 mb-8">Experience</h2>
         <div className="space-y-8">
           {[
-            { role: 'Lead Consultant, Teaburg International', time: 'March 2022 - Present', tasks: ['Reduced vulnerabilities by 80%', 'Implemented firewalls'] },
+            { role: 'Lead Consultant, Teaburg International', time: 'March 2022 - Present', tasks: ['Vulnerability Reduction', 'Firewall Implementation', 'System Administration'] },
             { role: 'Internal Web Developer, Autoburg International Juvenile', time: 'June 2020 - Feb 2022', tasks: ['Built secure intranet', 'Optimized performance'] },
           ].map((job) => (
             <motion.div key={job.role} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="p-6 bg-gray-800 rounded-lg shadow-lg">
